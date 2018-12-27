@@ -296,7 +296,7 @@ class SwipeableViews extends React.Component {
       this.firstRenderTimeout = setTimeout(() => {
         this.setState({
           renderOnlyActive: false,
-        });
+        }, this.props.afterLazyLoading);
       }, 0);
     }
 
@@ -702,6 +702,7 @@ class SwipeableViews extends React.Component {
       containerStyle: containerStyleProp,
       disabled,
       disableLazyLoading,
+      afterLazyLoading,
       enableMouseEvents,
       hysteresis,
       ignoreNativeScroll,
@@ -890,6 +891,11 @@ SwipeableViews.propTypes = {
    * if `true` will render all the views in first rendering.
    */
   disableLazyLoading: PropTypes.bool,
+  /**
+   * Will run this function after lazyloading,
+   * for example to close a progress indicator
+   */
+  afterLazyLoading: PropTypes.func,
   /**
    * If `true`, it will enable mouse events.
    * This will allow the user to perform the relevant swipe actions with a mouse.
